@@ -1,7 +1,26 @@
 import alquimista.*
 
 describe "Tests de Alquimista" {
+	
+	/*%%%%% PUNTO 1 %%%%%*/
 	test "El alquimista tiene criterio." {
+		alquimista.itemsDeCombate([bomba, pocion])
 		assert.that(alquimista.tieneCriterio())
+	}
+	
+	test "El alquimista NO tiene criterio" {
+		alquimista.itemsDeCombate([pocion, pocion])
+		assert.notThat(alquimista.tieneCriterio())
+	}
+	
+	/*%%%%% PUNTO 2 %%%%%*/
+	test "El alquimista es buen Explorador." {
+		alquimista.itemsDeRecoleccion([uni, florRoja, polvora])
+		assert.that(alquimista.esBuenExplorador())
+	}
+	
+	test "El alquimista NO es buen Explorador." {
+		alquimista.itemsDeRecoleccion([uni, uni, polvora])
+		assert.that(alquimista.esBuenExplorador())
 	}
 }
