@@ -1,6 +1,7 @@
+import alquimista.*
 
-test "testX" {
-
-	assert.that(true)
-
+describe "Tests de Alquimista" {
+	test "El alquimista tiene criterio." {
+		assert.that(alquimista.tieneCriterio())
+	}
 }
