@@ -65,4 +65,16 @@ object alquimista {
   }
   
 		
+} //%%%%% Fin alquimista %%%%%%
+
+object bomba {
+  var danio = 150
+  
+  method esEfectivo() {
+    return danio > 100
+  }
+  
+  method capacidad() {
+  	return danio/2
+  } 
 }
