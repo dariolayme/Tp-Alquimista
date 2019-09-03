@@ -151,3 +151,27 @@ object debilitador {
 }//%%%%% Fin Debilitador %%%%%% 
 
 
+object florRoja {
+	var mistico = false
+	
+	method esMistico() {
+		return mistico
+	}
+}
+
+object uni {
+	var mistico = true
+	
+	method esMistico() {
+		return mistico
+	}
+}
+
+object polvora {
+	var mistico = false
+	
+	method esMistico() {
+		return mistico
+	}
+}
+
