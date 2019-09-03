@@ -48,8 +48,10 @@ object alquimista {
   
   /*%%%%% PUNTO 4 %%%%%*/
   method esProfesional() {
-  	return self.calidadPromedioDeTodosLosItems() > 50 && self.bienEquipado() && self.esBuenExplorador()
+  	return self.calidadPromedioDeTodosLosItems() > 50 && self.bienEquipado()/* */ && self.esBuenExplorador()
   }
+  
+  //bienEquipado() = Que todo sus items de Combate sean Efectivos //
   
   method calidadPromedioDeTodosLosItems() {
   	
@@ -57,10 +59,10 @@ object alquimista {
   }
   
   method calidadTotalDeSusItems() {
-  	return self.calidadTotalDeItems(itemsDeCombate) + self.calidadTotalDeItems(itemsDeRecoleccion)
+  	return self.calidadTotalDe(itemsDeCombate) + self.calidadTotalDe(itemsDeRecoleccion)
   }
   
-  method calidadTotalDeItems(items) {
+  method calidadTotalDe(items) {
   	return items.sum({
   		item => item.calidad()
   	})  	
@@ -68,7 +70,7 @@ object alquimista {
   
   method bienEquipado() {
   	return itemsDeCombate.all({
-  		item => item.esEfectico()
+  		item => item.esEfectivo()
   	})
   }
   
@@ -78,19 +80,26 @@ object alquimista {
 
 object bomba {
   var danio = 150
+  var materiales = [florRoja, uni, polvora]
   
   method esEfectivo() {
-    return danio > 100
+    return (danio > 100)
   }
   
   method capacidad() {
   	return danio/2
   } 
+  
+  method calidad() {
+  	return materiales.min({
+  		material => material.calidad()
+  	})
+  }
 } //%%%%% Fin bomba %%%%%%
 
 
 object pocion {
-  var materiales = []
+  var materiales = [uni, florRoja]
   var poderCurativo = 20
   
   method esEfectivo() {
@@ -113,11 +122,23 @@ object pocion {
   	
   }
   
+  method calidad() {
+  	if ( self.fueCreadaConAlgunMaterialMistico() ){
+  		
+  		return materiales.find({
+  			material => material.esMistico()
+  		}).calidad()
+  	}
+  	else{
+  		return materiales.head().calidad()
+  	}
+  }
+  
 } //%%%%% Fin pocion %%%%%%
 
 
 object debilitador {
-  var materiales = []
+  var materiales = [florRoja,florRoja]
   var potencia = 0
   
   method esEfectivo() {
@@ -147,20 +168,42 @@ object debilitador {
   	}
 
   }
+  
+  method calidad() {
+  	var calidadesDeMaterial = materiales.map({
+  		material => material.calidad()
+  	}).sortedBy({
+  		material => material.calidad()
+  	})
+  	
+  	return calidadesDeMaterial.take(2).sum() / 2 
+  }
 
 }//%%%%% Fin Debilitador %%%%%% 
 
 
+
+//%%%%% Materiales %%%%%%
+
 object florRoja {
+	var calidad = 2
 	var mistico = false
 	
 	method esMistico() {
 		return mistico
 	}
+	method calidad() {
+		return calidad
+	}
 }
 
 object uni {
+	var calidad = 12
 	var mistico = true
+	
+	method calidad() {
+		return calidad
+	}
 	
 	method esMistico() {
 		return mistico
@@ -168,10 +211,28 @@ object uni {
 }
 
 object polvora {
+	var calidad = 22
 	var mistico = false
 	
 	method esMistico() {
 		return mistico
 	}
+	method calidad() {
+		return calidad
+	}
+}
+
+
+//%%%%% Items de Recoleccion %%%%%%
+
+object caniaDePescar {
+	
+} 
+
+object bolsaDeVientoMagica {
+	
+}
+object redParaInsectos {
+	
 }
 

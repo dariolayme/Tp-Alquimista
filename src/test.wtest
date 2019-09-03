@@ -21,6 +21,6 @@ describe "Tests de Alquimista" {
 	
 	test "El alquimista NO es buen Explorador." {
 		alquimista.itemsDeRecoleccion([uni, uni, polvora])
-		assert.that(alquimista.esBuenExplorador())
+		assert.notThat(alquimista.esBuenExplorador())
 	}
 }
