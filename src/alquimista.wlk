@@ -67,6 +67,7 @@ object alquimista {
 		
 } //%%%%% Fin alquimista %%%%%%
 
+
 object bomba {
   var danio = 150
   
@@ -77,4 +78,31 @@ object bomba {
   method capacidad() {
   	return danio/2
   } 
-}
+} //%%%%% Fin bomba %%%%%%
+
+
+object pocion {
+  var materiales = []
+  var poderCurativo = 20
+  
+  method esEfectivo() {
+    return poderCurativo > 50 and self.fueCreadaConAlgunMaterialMistico()
+  }
+  
+  method fueCreadaConAlgunMaterialMistico() {
+    return materiales.any({ material =>
+      material.esMistico()
+    })
+  }
+  method capacidad() {
+  	return poderCurativo + 10* self.cantidadDeMaterialesMisticosQueContiene()
+  }
+  
+  method cantidadDeMaterialesMisticosQueContiene() {
+  	return materiales.count({
+  		material => material.esMistico()
+  	})
+  	
+  }
+  
+} //%%%%% Fin pocion %%%%%%
