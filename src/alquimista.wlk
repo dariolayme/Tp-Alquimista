@@ -2,6 +2,14 @@ object alquimista {
   var itemsDeCombate = []
   var itemsDeRecoleccion = []
   
+  method itemsDeCombate(lista) {
+  	itemsDeCombate = lista
+  }
+  
+  method itemsDeRecoleccion(lista) {
+  	itemsDeRecoleccion = lista
+  }
+  
   /*%%%%% PUNTO 1 %%%%%*/
   method tieneCriterio() {
     return self.cantidadDeItemsDeCombateEfectivos() >= self.cantidadDeItemsDeCombate() / 2
