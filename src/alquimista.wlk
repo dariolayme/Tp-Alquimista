@@ -114,3 +114,40 @@ object pocion {
   }
   
 } //%%%%% Fin pocion %%%%%%
+
+
+object debilitador {
+  var materiales = []
+  var potencia = 0
+  
+  method esEfectivo() {
+    return potencia > 0 and self.fueCreadoPorAlgunMaterialMistico().negate()
+  }
+  
+  method fueCreadoPorAlgunMaterialMistico() {
+    return materiales.any({ material =>
+      material.esMistico()
+    })
+  }
+  
+  method cantidadDeMaterialesMisticosQueContiene() {
+  	
+  	return materiales.count({
+  		material => material.esMistico()
+  	})
+  	
+  }
+  
+  method capacidad() {
+  	if (self.fueCreadoPorAlgunMaterialMistico()){
+  		return self.cantidadDeMaterialesMisticosQueContiene()*12
+  	}
+  	else {
+  		return 5
+  	}
+
+  }
+
+}//%%%%% Fin Debilitador %%%%%% 
+
+
