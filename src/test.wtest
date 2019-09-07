@@ -23,4 +23,6 @@ describe "Tests de Alquimista" {
 		alquimista.itemsDeRecoleccion([uni, uni, polvora])
 		assert.notThat(alquimista.esBuenExplorador())
 	}
+	
+	//Comit De prueba 
 }
