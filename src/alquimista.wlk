@@ -170,9 +170,9 @@ object debilitador {
   }
   
   method calidad() {
-  	var calidadesDeMaterial = materiales.map({
-  		material => material.calidad()
-  	}).sortedBy({
+  	var calidadesDeMaterial = materiales.sortedBy({
+  		material1, material2 => material1.calidad() < material2.calidad()
+  	}).map({
   		material => material.calidad()
   	})
   	
